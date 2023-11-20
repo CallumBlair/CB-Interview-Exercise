@@ -4,17 +4,22 @@ import requests
 import string
 import json
 
+address = "https://durvp011gk.execute-api.eu-west-1.amazonaws.com/v1/api/forecasts?city=<name>"
+
 minMaxTemps = {"city":"undefined", "timeSeries": []}
 
+city = ""
+while city == "":
+    city = input("Please enter city now: ")
 
-#city = input("enter city")
-city = "London"
+print("City selected: " + city)
+
 minMaxTemps["city"] = city
 
 
-address = c.address.replace("<city>", city)
-response = q.query(address, c.apiKey)
-
+addressCity = address.replace("<name>", city)
+response = q.query(addressCity, c.apiKey)
+print("Response recieved")
 
 for x in response["features"][0]["properties"]["timeSeries"]:
     date = x["time"].split("T")[0]
@@ -31,7 +36,9 @@ for x in response["features"][0]["properties"]["timeSeries"]:
             
         if minMaxTemps["timeSeries"][index]["maxTemp"] < temperature:
             minMaxTemps["timeSeries"][index]["maxTemp"] = temperature
-    
+
 
 with open("minMaxTemperatures.json", "w") as output:
     json.dump(minMaxTemps, output)
+
+print("Output saved to minMaxTemperatures.json")
