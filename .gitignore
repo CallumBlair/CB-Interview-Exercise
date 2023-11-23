@@ -1,2 +1,3 @@
 constants.py
 minMaxTemperatures.json
+__pycache__/
