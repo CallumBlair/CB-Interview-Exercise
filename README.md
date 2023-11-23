@@ -14,7 +14,9 @@ To use this application please clone the repository by navigating to your chosen
 git clone https://github.com/CallumBlair/CB-Interview-Exercise.git
 ```
 Please ensure you have [Python](https://www.python.org/) setup on your machine.
+
 **Library Installation**
+
 Please ensure you have the requests module installed.
 This can be done in a command prompt window after installing Python by running:
 ```
@@ -48,6 +50,7 @@ You will be prompted for your city choice, please type this and press enter.
 The application will request the information from the Cloud API and save it in the repository root folder in the minMaxTemperatures.JSON file.
 
 **Cloud based funtionality**
+
 The cloud function utilises a GitHub continuous deployment pipeline which deploy the contents of the Server folder to Google App Engine.
 This improves the security of the application by storing the given API access key as a GitHub secret, which is then deployed to the Google App Engine instance as an Enviroment Variable.
 The local client application fires a request to the App Engine deployment which then uses the key to request the information from the given API before returning it to the original client.
