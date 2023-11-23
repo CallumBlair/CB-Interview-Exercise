@@ -30,10 +30,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GAE_CRED }}'
+        
     - name: Deploy
       uses: google-github-actions/deploy-appengine@v1.2.7
       with:
         working_directory: '${{ github.workspace }}/Server'
-        credentials: ${{secrets.GAE_CRED }}
         env_vars: |-
           x_api_key = $key
