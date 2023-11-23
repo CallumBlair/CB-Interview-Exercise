@@ -3,7 +3,6 @@ import query as q
 import requests
 import string
 import json
-import os
 
 #API address
 address = "https://cb-interview-exercise.ew.r.appspot.com/requestTemp?city=<name>"
@@ -11,7 +10,7 @@ address = "https://cb-interview-exercise.ew.r.appspot.com/requestTemp?city=<name
 #Initialise min max temperature dictionary
 minMaxTemps = {"city":"undefined", "timeSeries": []}
 
-#Recieve city choice from user
+#Recieve City choice from user
 city = ""
 while city == "":
     city = input("Please enter city now: ")
