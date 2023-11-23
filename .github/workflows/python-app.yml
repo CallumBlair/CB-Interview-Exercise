@@ -41,4 +41,4 @@ jobs:
       with:
         working_directory: '${{ github.workspace }}/Server'
         env_vars: |-
-          x_api_key = $key
+          x_api_key = '$key'
