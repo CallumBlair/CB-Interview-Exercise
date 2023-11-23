@@ -16,7 +16,7 @@ def query(address, key):
 
 @app.route('/')
 def index():
-    return "TEST"
+    return key
 
 @app.route('/requestTemp', methods = ["get"])
 def requestTemp():
