@@ -8,15 +8,11 @@ key = os.environ.get("x_api_key")
 
 app = Flask(__name__)
 
-def query(address, key):
-    header = {"x-api-key" : key}
+def query(address, Apikey):
+    header = {"x-api-key" : Apikey}
     response = requests.get(address, headers=header)
     return response.json()
 
-
-@app.route('/')
-def index():
-    return key
 
 @app.route('/requestTemp', methods = ["get"])
 def requestTemp():
