@@ -1,7 +1,7 @@
+#Import Libraries
 import requests
 
+#Query function returning JSON from API
 def query(address):
-    #header = {"x-api-key" : key}
-    #response = requests.get(address, headers=header)
     response = requests.get(address)
     return response.json()

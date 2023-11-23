@@ -1,3 +1,4 @@
 constants.py
 minMaxTemperatures.json
 __pycache__/
+/LocalVersion/__pycache__/
