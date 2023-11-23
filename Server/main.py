@@ -4,7 +4,7 @@ import string
 import json
 import os
 
-key = "TEST"
+key = os.environ.get("x_api_key")
 
 app = Flask(__name__)
 
