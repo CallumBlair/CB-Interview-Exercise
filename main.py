@@ -5,12 +5,9 @@ import json
 import os
 
 
-address = "https://durvp011gk.execute-api.eu-west-1.amazonaws.com/v1/api/forecasts?city=<name>"
+address = "https://cb-interview-exercise.ew.r.appspot.com/requestTemp?city=<name>"
 
 minMaxTemps = {"city":"undefined", "timeSeries": []}
-
-if os.environ.get("x-api-key") == None:
-    os.environ["x-api-key"] = input("Please enter your API Key now for temporary access: ")
 
 city = ""
 while city == "":
@@ -18,35 +15,15 @@ while city == "":
 
 print("City selected: " + city)
 
-minMaxTemps["city"] = city
+
 
 
 addressCity = address.replace("<name>", city)
-response = q.query(addressCity, os.environ.get("x-api-key"))
+
+response = q.query(addressCity)
 print("Response recieved")
 
-try:
-    if response["message"] == "Forbidden":
-        print("Access forbidden - please check the entered key")
-except:    
-    for x in response["features"][0]["properties"]["timeSeries"]:
-        date = x["time"].split("T")[0]
-        temperature = x["screenTemperature"]
-        if date not in [i["date"] for i in minMaxTemps["timeSeries"]]:
+with open("minMaxTemperatures.json", "w") as output:
+    json.dump(response, output)
 
-            minMaxTemps["timeSeries"].append({"date":date,
-                                           "minTemp":temperature,
-                                           "maxTemp":temperature})
-        else:
-            index = [i["date"] for i in minMaxTemps["timeSeries"]].index(date)
-            if minMaxTemps["timeSeries"][index]["minTemp"] > temperature:
-                minMaxTemps["timeSeries"][index]["minTemp"] = temperature
-                
-            if minMaxTemps["timeSeries"][index]["maxTemp"] < temperature:
-                minMaxTemps["timeSeries"][index]["maxTemp"] = temperature
-
-
-    with open("minMaxTemperatures.json", "w") as output:
-        json.dump(minMaxTemps, output)
-
-    print("Output saved to minMaxTemperatures.json")
+print("Output saved to minMaxTemperatures.json")
