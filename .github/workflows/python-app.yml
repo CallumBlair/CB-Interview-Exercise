@@ -9,8 +9,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  key: ${{secrets.X_API_KEY }}
+
 
 permissions:
   contents: read
@@ -41,4 +40,4 @@ jobs:
       with:
         working_directory: '${{ github.workspace }}/Server'
         env_vars: |-
-          x_api_key = '$key'
+          x_api_key = '${{ secrets.X_API_KEY }}'
