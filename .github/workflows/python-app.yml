@@ -33,6 +33,7 @@ jobs:
     - name: Deploy
       uses: google-github-actions/deploy-appengine@v1.2.7
       with:
+        working_directory: '${{ github.workspace }}/Server'
         credentials: ${{secrets.GAE_CRED }}
         env_vars: |-
           x_api_key = $key
